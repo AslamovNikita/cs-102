@@ -1,7 +1,7 @@
 """тесты"""
 import unittest
 
-from src.lab1.calculator import (
+from src.lab1_1.calculator import (
     add,
     calculate,
     divide,
