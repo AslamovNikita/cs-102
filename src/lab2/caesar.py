@@ -1,6 +1,10 @@
+"""шифр Цезаря"""
+
+
 def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
-    Encrypts plaintext using a Caesar cipher.
+    шифрует текст шифром Цезаря
+
     >>> encrypt_caesar("PYTHON")
     'SBWKRQ'
     >>> encrypt_caesar("python")
@@ -9,15 +13,29 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     'Sbwkrq3.6'
     >>> encrypt_caesar("")
     ''
+    >>> encrypt_caesar("ABC", 0)
+    'ABC'
     """
     ciphertext = ""
-    # PUT YOUR CODE HERE
+
+    # сдвигает толькр английские буквы
+    for char in plaintext:
+        if "A" <= char <= "Z":
+            new_char = chr((ord(char) - ord("A") + shift) % 26 + ord("A"))
+            ciphertext += new_char
+        elif "a" <= char <= "z":
+            new_char = chr((ord(char) - ord("a") + shift) % 26 + ord("a"))
+            ciphertext += new_char
+        else:
+            ciphertext += char
+
     return ciphertext
 
 
 def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     """
-    Decrypts a ciphertext using a Caesar cipher.
+    расшифровывает текст зашифрованный  Цезарем
+
     >>> decrypt_caesar("SBWKRQ")
     'PYTHON'
     >>> decrypt_caesar("sbwkrq")
@@ -26,7 +44,20 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     'Python3.6'
     >>> decrypt_caesar("")
     ''
+    >>> decrypt_caesar("ABC", 0)
+    'ABC'
     """
     plaintext = ""
-    # PUT YOUR CODE HERE
+
+    # для расшифровки обратный сдвиг
+    for char in ciphertext:
+        if "A" <= char <= "Z":
+            new_char = chr((ord(char) - ord("A") - shift) % 26 + ord("A"))
+            plaintext += new_char
+        elif "a" <= char <= "z":
+            new_char = chr((ord(char) - ord("a") - shift) % 26 + ord("a"))
+            plaintext += new_char
+        else:
+            plaintext += char
+
     return plaintext
